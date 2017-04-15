@@ -1,5 +1,6 @@
+from os import urandom
+
 from Crypto.PublicKey import RSA
-from Crypto import Random
 
 from kappacrypt.utils import ensure_valid_keypaths
 
@@ -21,8 +22,7 @@ class RSAKeys:
 
     def gen_keys(self):
 
-        random_generator = Random.new().read
-        key = RSA.generate(self._key_size, random_generator)
+        key = RSA.generate(self._key_size, urandom)
         private_key = key.exportKey()
         public_key = key.publickey().exportKey()
         self._private_key, self._public_key = private_key, public_key

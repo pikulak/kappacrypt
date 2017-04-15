@@ -1,4 +1,5 @@
-from Crypto import Random
+from os import urandom
+
 from Crypto.Cipher import AES
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
@@ -16,7 +17,7 @@ class AESKey:
     def key(self):
 
         if not self._key:
-            self._key = Random.get_random_bytes(32)
+            self._key = urandom(32)
         
         return self._key
 
@@ -24,7 +25,7 @@ class AESKey:
     def IV(self):
 
         if not self._IV:
-            self._IV = Random.get_random_bytes(16)
+            self._IV = urandom(16)
         
         return self._IV
 
