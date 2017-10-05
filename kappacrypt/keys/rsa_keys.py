@@ -2,7 +2,11 @@ from os import urandom
 
 from Crypto.PublicKey import RSA
 
-from kappacrypt.utils import ensure_valid_keypaths
+from kappacrypt.utils import (
+    ensure_valid_keypaths,
+    write_to_file,
+    read_from_file
+)
 
 
 class RSAKeys:
@@ -58,12 +62,10 @@ class RSAKeys:
                               Did you forgot to use RSAKeys.gen_keys() or RSAKeys.load() methods?")
 
         if "private_key" in to_paths:
-            with open(to_paths["private_key"], 'wb') as private_file:
-                private_file.write(self._private_key)
+            write_to_file(to_paths["private_key"], 'wb', self._private_key)
 
         if "public_key" in to_paths:
-            with open(to_paths["public_key"], 'wb') as public_file:
-                public_file.write(self._public_key)
+            write_to_file(to_paths["public_key"], 'wb', self._public_key)
 
     def load(self, from_paths=None):
         
@@ -73,12 +75,10 @@ class RSAKeys:
         ensure_valid_keypaths(from_paths)
 
         if "private_key" in from_paths:
-            with open(from_paths["private_key"], 'rb') as private_file:
-                self._private_key = private_file.read()
+            self._private_key = read_from_file(from_paths["private_key"], 'rb')
 
         if "public_key" in from_paths:
-            with open(from_paths["public_key"], 'rb') as public_file:
-                self._public_key = public_file.read()
+            self._public_key = read_from_file(from_paths["public_key"], 'rb')
 
     def load_directly(self, key_data, key_type):
 
