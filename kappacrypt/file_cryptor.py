@@ -1,7 +1,7 @@
 import struct
 import os
 
-from Crypto.Cipher import AES
+from Cryptodome.Cipher import AES
 
 from kappacrypt.keys import AESKey
 from kappacrypt.core import KeysChunk
@@ -74,12 +74,11 @@ class FileCryptor:
 
                 decrypted_file.truncate(original_file_size)
 
-
-    def get_original_file_size(self, file_object):
-
-        struct_Q_size = struct.calcsize('Q')
-        struct_Q_value = file_object.read(struct_Q_size)
-        original_file_size = struct.unpack('>Q', struct_Q_value)[0]
+    @staticmethod
+    def get_original_file_size(file_object):
+        struct_q_size = struct.calcsize('Q')
+        struct_q_value = file_object.read(struct_q_size)
+        original_file_size = struct.unpack('>Q', struct_q_value)[0]
         return original_file_size
 
     def load_keys_chunk(self):

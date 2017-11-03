@@ -1,5 +1,5 @@
-from Crypto.Cipher import PKCS1_OAEP
-from Crypto.PublicKey import RSA
+from Cryptodome.Cipher import PKCS1_OAEP
+from Cryptodome.PublicKey import RSA
 
 from kappacrypt.keys import AESKey
 
@@ -27,6 +27,4 @@ class KeysChunk:
         IV = chunk[8:24]
         encrypted_aes_key = chunk[24:512+24]
         
-        self._aes_key = AESKey(key=encrypted_aes_key, 
-                                IV=IV, 
-                                encrypted=True)
+        self._aes_key = AESKey(key=encrypted_aes_key, IV=IV, encrypted=True)
