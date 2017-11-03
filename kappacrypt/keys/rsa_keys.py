@@ -1,6 +1,6 @@
 from os import urandom
 
-from Crypto.PublicKey import RSA
+from Cryptodome.PublicKey import RSA
 
 from kappacrypt.utils import (
     ensure_valid_keypaths,
