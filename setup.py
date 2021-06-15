@@ -8,6 +8,6 @@ setup(
     license="GPLv3",
     author="pikulak",
     author_email="pikulak1@gmail.com",
-    requires=["pycrypto"],
+    requires=["PyCryptodomex"],
     description="File crypting utility using RSA + AES"
 )
